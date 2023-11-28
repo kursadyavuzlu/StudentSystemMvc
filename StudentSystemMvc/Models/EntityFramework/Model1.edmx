@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DbMvcSchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tbl_Clubs">
+          <Key>
+            <PropertyRef Name="ClubID" />
+          </Key>
+          <Property Name="ClubID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClubName" Type="varchar" MaxLength="60" />
+          <Property Name="ClubQuota" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Tbl_Lessons">
+          <Key>
+            <PropertyRef Name="LessonID" />
+          </Key>
+          <Property Name="LessonID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LessonName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Notes">
+          <Key>
+            <PropertyRef Name="NoteID" />
+          </Key>
+          <Property Name="NoteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LessonID" Type="tinyint" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="Exam1" Type="tinyint" />
+          <Property Name="Exam2" Type="tinyint" />
+          <Property Name="Exam3" Type="tinyint" />
+          <Property Name="Project" Type="tinyint" />
+          <Property Name="Avarage" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tbl_Students">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StuName" Type="varchar" MaxLength="30" />
+          <Property Name="StuSurname" Type="varchar" MaxLength="20" />
+          <Property Name="StuImage" Type="varchar" MaxLength="50" />
+          <Property Name="StuGender" Type="varchar" MaxLength="10" />
+          <Property Name="StuClub" Type="tinyint" />
+        </EntityType>
+        <Association Name="FK_Tbl_Notes_Tbl_Lessons">
+          <End Role="Tbl_Lessons" Type="Self.Tbl_Lessons" Multiplicity="0..1" />
+          <End Role="Tbl_Notes" Type="Self.Tbl_Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Lessons">
+              <PropertyRef Name="LessonID" />
+            </Principal>
+            <Dependent Role="Tbl_Notes">
+              <PropertyRef Name="LessonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Notes_Tbl_Students">
+          <End Role="Tbl_Students" Type="Self.Tbl_Students" Multiplicity="0..1" />
+          <End Role="Tbl_Notes" Type="Self.Tbl_Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Students">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="Tbl_Notes">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Students_Tbl_Clubs">
+          <End Role="Tbl_Clubs" Type="Self.Tbl_Clubs" Multiplicity="0..1" />
+          <End Role="Tbl_Students" Type="Self.Tbl_Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Clubs">
+              <PropertyRef Name="ClubID" />
+            </Principal>
+            <Dependent Role="Tbl_Students">
+              <PropertyRef Name="StuClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbMvcSchoolModelStoreContainer">
+          <EntitySet Name="Tbl_Clubs" EntityType="Self.Tbl_Clubs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Lessons" EntityType="Self.Tbl_Lessons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Notes" EntityType="Self.Tbl_Notes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Students" EntityType="Self.Tbl_Students" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tbl_Notes_Tbl_Lessons" Association="Self.FK_Tbl_Notes_Tbl_Lessons">
+            <End Role="Tbl_Lessons" EntitySet="Tbl_Lessons" />
+            <End Role="Tbl_Notes" EntitySet="Tbl_Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Notes_Tbl_Students" Association="Self.FK_Tbl_Notes_Tbl_Students">
+            <End Role="Tbl_Students" EntitySet="Tbl_Students" />
+            <End Role="Tbl_Notes" EntitySet="Tbl_Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Students_Tbl_Clubs" Association="Self.FK_Tbl_Students_Tbl_Clubs">
+            <End Role="Tbl_Clubs" EntitySet="Tbl_Clubs" />
+            <End Role="Tbl_Students" EntitySet="Tbl_Students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbMvcSchoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tbl_Clubs">
+          <Key>
+            <PropertyRef Name="ClubID" />
+          </Key>
+          <Property Name="ClubID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClubName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="ClubQuota" Type="Int16" />
+          <NavigationProperty Name="Tbl_Students" Relationship="Self.FK_Tbl_Students_Tbl_Clubs" FromRole="Tbl_Clubs" ToRole="Tbl_Students" />
+        </EntityType>
+        <EntityType Name="Tbl_Lessons">
+          <Key>
+            <PropertyRef Name="LessonID" />
+          </Key>
+          <Property Name="LessonID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LessonName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Notes" Relationship="Self.FK_Tbl_Notes_Tbl_Lessons" FromRole="Tbl_Lessons" ToRole="Tbl_Notes" />
+        </EntityType>
+        <EntityType Name="Tbl_Notes">
+          <Key>
+            <PropertyRef Name="NoteID" />
+          </Key>
+          <Property Name="NoteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LessonID" Type="Byte" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="Exam1" Type="Byte" />
+          <Property Name="Exam2" Type="Byte" />
+          <Property Name="Exam3" Type="Byte" />
+          <Property Name="Project" Type="Byte" />
+          <Property Name="Avarage" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Lessons" Relationship="Self.FK_Tbl_Notes_Tbl_Lessons" FromRole="Tbl_Notes" ToRole="Tbl_Lessons" />
+          <NavigationProperty Name="Tbl_Students" Relationship="Self.FK_Tbl_Notes_Tbl_Students" FromRole="Tbl_Notes" ToRole="Tbl_Students" />
+        </EntityType>
+        <EntityType Name="Tbl_Students">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StuName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="StuSurname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="StuImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StuGender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="StuClub" Type="Byte" />
+          <NavigationProperty Name="Tbl_Clubs" Relationship="Self.FK_Tbl_Students_Tbl_Clubs" FromRole="Tbl_Students" ToRole="Tbl_Clubs" />
+          <NavigationProperty Name="Tbl_Notes" Relationship="Self.FK_Tbl_Notes_Tbl_Students" FromRole="Tbl_Students" ToRole="Tbl_Notes" />
+        </EntityType>
+        <Association Name="FK_Tbl_Students_Tbl_Clubs">
+          <End Role="Tbl_Clubs" Type="Self.Tbl_Clubs" Multiplicity="0..1" />
+          <End Role="Tbl_Students" Type="Self.Tbl_Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Clubs">
+              <PropertyRef Name="ClubID" />
+            </Principal>
+            <Dependent Role="Tbl_Students">
+              <PropertyRef Name="StuClub" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Notes_Tbl_Lessons">
+          <End Role="Tbl_Lessons" Type="Self.Tbl_Lessons" Multiplicity="0..1" />
+          <End Role="Tbl_Notes" Type="Self.Tbl_Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Lessons">
+              <PropertyRef Name="LessonID" />
+            </Principal>
+            <Dependent Role="Tbl_Notes">
+              <PropertyRef Name="LessonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Notes_Tbl_Students">
+          <End Role="Tbl_Students" Type="Self.Tbl_Students" Multiplicity="0..1" />
+          <End Role="Tbl_Notes" Type="Self.Tbl_Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Students">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="Tbl_Notes">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbMvcSchoolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Clubs" EntityType="Self.Tbl_Clubs" />
+          <EntitySet Name="Tbl_Lessons" EntityType="Self.Tbl_Lessons" />
+          <EntitySet Name="Tbl_Notes" EntityType="Self.Tbl_Notes" />
+          <EntitySet Name="Tbl_Students" EntityType="Self.Tbl_Students" />
+          <AssociationSet Name="FK_Tbl_Students_Tbl_Clubs" Association="Self.FK_Tbl_Students_Tbl_Clubs">
+            <End Role="Tbl_Clubs" EntitySet="Tbl_Clubs" />
+            <End Role="Tbl_Students" EntitySet="Tbl_Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Notes_Tbl_Lessons" Association="Self.FK_Tbl_Notes_Tbl_Lessons">
+            <End Role="Tbl_Lessons" EntitySet="Tbl_Lessons" />
+            <End Role="Tbl_Notes" EntitySet="Tbl_Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Notes_Tbl_Students" Association="Self.FK_Tbl_Notes_Tbl_Students">
+            <End Role="Tbl_Students" EntitySet="Tbl_Students" />
+            <End Role="Tbl_Notes" EntitySet="Tbl_Notes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbMvcSchoolModelStoreContainer" CdmEntityContainer="DbMvcSchoolEntities">
+          <EntitySetMapping Name="Tbl_Clubs">
+            <EntityTypeMapping TypeName="DbMvcSchoolModel.Tbl_Clubs">
+              <MappingFragment StoreEntitySet="Tbl_Clubs">
+                <ScalarProperty Name="ClubID" ColumnName="ClubID" />
+                <ScalarProperty Name="ClubName" ColumnName="ClubName" />
+                <ScalarProperty Name="ClubQuota" ColumnName="ClubQuota" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Lessons">
+            <EntityTypeMapping TypeName="DbMvcSchoolModel.Tbl_Lessons">
+              <MappingFragment StoreEntitySet="Tbl_Lessons">
+                <ScalarProperty Name="LessonID" ColumnName="LessonID" />
+                <ScalarProperty Name="LessonName" ColumnName="LessonName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Notes">
+            <EntityTypeMapping TypeName="DbMvcSchoolModel.Tbl_Notes">
+              <MappingFragment StoreEntitySet="Tbl_Notes">
+                <ScalarProperty Name="NoteID" ColumnName="NoteID" />
+                <ScalarProperty Name="LessonID" ColumnName="LessonID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Exam1" ColumnName="Exam1" />
+                <ScalarProperty Name="Exam2" ColumnName="Exam2" />
+                <ScalarProperty Name="Exam3" ColumnName="Exam3" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="Avarage" ColumnName="Avarage" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Students">
+            <EntityTypeMapping TypeName="DbMvcSchoolModel.Tbl_Students">
+              <MappingFragment StoreEntitySet="Tbl_Students">
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="StuName" ColumnName="StuName" />
+                <ScalarProperty Name="StuSurname" ColumnName="StuSurname" />
+                <ScalarProperty Name="StuImage" ColumnName="StuImage" />
+                <ScalarProperty Name="StuGender" ColumnName="StuGender" />
+                <ScalarProperty Name="StuClub" ColumnName="StuClub" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
