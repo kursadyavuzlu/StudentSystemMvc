@@ -16,5 +16,19 @@ namespace StudentSystemMvc.Controllers
             var notes = db.Tbl_Notes.ToList();
             return View(notes);
         }
+
+        [HttpGet]
+        public ActionResult AddNote()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddNote(Tbl_Notes p)
+        {
+            db.Tbl_Notes.Add(p);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

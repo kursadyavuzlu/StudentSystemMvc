@@ -16,5 +16,19 @@ namespace StudentSystemMvc.Controllers
             var lessons = db.Tbl_Lessons.ToList();
             return View(lessons);
         }
+
+        [HttpGet]
+        public ActionResult AddLesson()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddLesson(Tbl_Lessons p)
+        {
+            db.Tbl_Lessons.Add(p);
+            db.SaveChanges();
+            return View();
+        }
     }
 }

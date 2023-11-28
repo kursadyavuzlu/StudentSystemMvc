@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Calculator</h2>
+
+<br/>
+
+<form class="form-group" method="post">
+
+    <div>
+        Note 1: <input type="text" name="number1" id="number1" /><br/><br />
+        Note 2: <input type="text" name="number2" id="number2" /><br/><br />
+        <button class="btn btn-warning">Calculate</button><br />
+        Result: @ViewBag.rst
+    </div>
+</form>
+

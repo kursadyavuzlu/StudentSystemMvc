@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CalculaterController.cs" />
     <Compile Include="Controllers\ClubsController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\NotesController.cs" />
@@ -580,6 +581,11 @@
     <Content Include="Views\Clubs\Index.cshtml" />
     <Content Include="Views\Students\Index.cshtml" />
     <Content Include="Views\Notes\Index.cshtml" />
+    <Content Include="Views\Default\AddLesson.cshtml" />
+    <Content Include="Views\Clubs\AddClub.cshtml" />
+    <Content Include="Views\Students\AddStudent.cshtml" />
+    <Content Include="Views\Notes\AddNote.cshtml" />
+    <Content Include="Views\Calculater\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
