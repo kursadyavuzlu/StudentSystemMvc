@@ -1,0 +1,38 @@
+﻿@using StudentSystemMvc.Models.EntityFramework
+@model List<Tbl_Notes>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>NOTE ID</th>
+        <th>LESSON</th>
+        <th>STUDENT</th>
+        <th>EXAM 1</th>
+        <th>EXAM 2</th>
+        <th>EXAM 3</th>
+        <th>PROJECT</th>
+        <th>AVARAGE</th>
+        <th>STATUS</th>
+    </tr>
+    <tbody>
+        @foreach (var note in Model)
+        {
+        <tr>
+            <td>@note.NoteID</td>
+            <td>@note.LessonID</td>
+            <td>@note.StudentID</td>
+            <td>@note.Exam1</td>
+            <td>@note.Exam2</td>
+            <td>@note.Exam3</td>
+            <td>@note.Project</td>
+            <td>@note.Avarage</td>
+            <td>@note.Status</td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+

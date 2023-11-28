@@ -7,14 +7,14 @@ using StudentSystemMvc.Models.EntityFramework;
 
 namespace StudentSystemMvc.Controllers
 {
-    public class DefaultController : Controller
+    public class StudentsController : Controller
     {
-        // GET: Default
         DbMvcSchoolEntities db = new DbMvcSchoolEntities();
+        // GET: Students
         public ActionResult Index()
         {
-            var lessons = db.Tbl_Lessons.ToList();
-            return View(lessons);
+            var students = db.Tbl_Students.ToList();
+            return View(students);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@using StudentSystemMvc.Models.EntityFramework
-@model List<Tbl_Lessons>
+@model List<Tbl_Clubs>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,16 +7,18 @@
 
 <table class="table table-bordered">
     <tr>
-        <th>LESSON ID</th>
-        <th>LESSON NAME</th>
+        <th>CLUB ID</th>
+        <th>CLUB NAME</th>
     </tr>
     <tbody>
-        @foreach(var lssn in Model)
+        @foreach (var club in Model)
         {
             <tr>
-                <td>@lssn.LessonID</td>
-                <td>@lssn.LessonName</td>
-            </tr>
+                <td>@club.ClubID</td>
+                <td>@club.ClubName</td>
+            </tr>       
         }
+
     </tbody>
 </table>
+

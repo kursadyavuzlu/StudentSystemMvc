@@ -1,0 +1,30 @@
+﻿@using StudentSystemMvc.Models.EntityFramework
+@model List<Tbl_Students>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>STUDENT ID</th>
+        <th>NAME</th>
+        <th>SURNAME</th>
+        <th>GENDER</th>
+        <th>CLUB</th>
+    </tr>
+    <tbody>
+        @foreach (var std in Model)
+        {
+            <tr>
+                <td>@std.StudentID</td>
+                <td>@std.StuName</td>
+                <td>@std.StuSurname</td>
+                <td>@std.StuGender</td>
+                <td>@std.StuClub</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
