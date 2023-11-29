@@ -1,0 +1,41 @@
+﻿@model StudentSystemMvc.Models.EntityFramework.Tbl_Students
+@{
+    ViewBag.Title = "GetStudent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Update", "Students", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.StuName)
+        @Html.TextBoxFor(m => m.StuName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.StuSurname)
+        @Html.TextBoxFor(m => m.StuSurname, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.StuClub)
+        @Html.TextBoxFor(m => m.StuClub, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.StuImage)
+        @Html.TextBoxFor(m => m.StuImage, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.StuGender)
+        @Html.TextBoxFor(m => m.StuGender, new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(m => m.StudentID)
+
+    <div style="margin-top:20px">
+        <button class="btn btn-warning">Update</button>
+    </div>
+}
+
+

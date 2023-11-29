@@ -38,5 +38,11 @@ namespace StudentSystemMvc.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult GetClub(int id)
+        {
+            var club = db.Tbl_Clubs.Find(id);
+            return View("GetClub", club);
+        }
     }
 }

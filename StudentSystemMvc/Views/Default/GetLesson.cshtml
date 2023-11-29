@@ -1,0 +1,19 @@
+﻿@model StudentSystemMvc.Models.EntityFramework.Tbl_Lessons
+@{
+    ViewBag.Title = "GetLesson";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Update", "Default", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m=>m.LessonName)
+        @Html.TextBoxFor(m=>m.LessonName, new { @class="form-control"})
+    </div>
+    @Html.HiddenFor(m=>m.LessonID)
+    <div style="margin-top:20px">
+        <button  class="btn btn-warning">UPDATE</button>
+    </div>
+}
+
+

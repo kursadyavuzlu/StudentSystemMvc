@@ -47,6 +47,12 @@ namespace StudentSystemMvc.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult GetStudent(int id)
+        {
+            var std = db.Tbl_Students.Find(id);
+            return View("GetStudent", std);
+        }
     }
 
 }

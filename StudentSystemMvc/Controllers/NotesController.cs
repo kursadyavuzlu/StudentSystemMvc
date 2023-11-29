@@ -30,5 +30,11 @@ namespace StudentSystemMvc.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult GetNote(int id)
+        {
+            var note = db.Tbl_Notes.Find(id);
+            return View("GetNote", note);
+        }
     }
 }

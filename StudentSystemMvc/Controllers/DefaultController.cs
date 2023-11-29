@@ -38,5 +38,11 @@ namespace StudentSystemMvc.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult GetLesson(int id)
+        {
+            var lssn = db.Tbl_Lessons.Find(id);
+            return View("GetLesson", lssn);
+        }
     }
 }
