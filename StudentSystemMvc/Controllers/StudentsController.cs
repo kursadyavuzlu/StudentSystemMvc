@@ -39,6 +39,14 @@ namespace StudentSystemMvc.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult Delete(int id)
+        {
+            var std = db.Tbl_Students.Find(id);
+            db.Tbl_Students.Remove(std);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 
 }

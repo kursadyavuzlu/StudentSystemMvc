@@ -30,5 +30,13 @@ namespace StudentSystemMvc.Controllers
             db.SaveChanges();
             return View();
         }
+
+        public ActionResult Delete (int id)
+        {
+            var lssn = db.Tbl_Lessons.Find(id);
+            db.Tbl_Lessons.Remove(lssn);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

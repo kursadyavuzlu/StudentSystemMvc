@@ -9,14 +9,16 @@
     <tr>
         <th>CLUB ID</th>
         <th>CLUB NAME</th>
+        <th>TRANSACTIONS</th>
     </tr>
     <tbody>
         @foreach (var club in Model)
         {
-            <tr>
-                <td>@club.ClubID</td>
-                <td>@club.ClubName</td>
-            </tr>       
+        <tr>
+            <td>@club.ClubID</td>
+            <td>@club.ClubName</td>
+            <td><a href="/Clubs/Delete/@club.ClubID" class="btn btn-danger">DELETE</a><a href="/Clubs/Update/@club.ClubID" class="btn btn-warning" style="margin-left:15px">UPDATE</a></td>
+        </tr>       
         }
 
     </tbody>

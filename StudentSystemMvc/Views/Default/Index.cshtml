@@ -9,6 +9,7 @@
     <tr>
         <th>LESSON ID</th>
         <th>LESSON NAME</th>
+        <th>TRANSACTIONS</th>
     </tr>
     <tbody>
         @foreach(var lssn in Model)
@@ -16,6 +17,8 @@
             <tr>
                 <td>@lssn.LessonID</td>
                 <td>@lssn.LessonName</td>
+                <td><a href="/Default/Delete/@lssn.LessonID" class="btn btn-danger">DELETE</a><a href="/Default/Update/@lssn.LessonID" class="btn btn-warning" style="margin-left:15px">UPDATE</a></td>
+
             </tr>
         }
     </tbody>

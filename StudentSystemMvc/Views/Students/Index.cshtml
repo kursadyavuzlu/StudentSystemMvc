@@ -12,6 +12,7 @@
         <th>SURNAME</th>
         <th>GENDER</th>
         <th>CLUB</th>
+        <th>TRANSACTIONS</th>
     </tr>
     <tbody>
         @foreach (var std in Model)
@@ -22,6 +23,7 @@
                 <td>@std.StuSurname</td>
                 <td>@std.StuGender</td>
                 <td>@std.StuClub</td>
+                <td><a href="/Students/Delete/@std.StudentID" class="btn btn-danger">DELETE</a><a href="/Students/Update/@std.StudentID" class="btn btn-warning" style="margin-left:15px">UPDATE</a></td>
             </tr>
         }
 

@@ -30,5 +30,13 @@ namespace StudentSystemMvc.Controllers
             db.SaveChanges();
             return View();
         }
+
+        public ActionResult Delete (int id)
+        {
+            var club = db.Tbl_Clubs.Find(id);
+            db.Tbl_Clubs.Remove(club);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

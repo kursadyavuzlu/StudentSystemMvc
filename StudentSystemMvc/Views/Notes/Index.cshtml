@@ -16,6 +16,7 @@
         <th>PROJECT</th>
         <th>AVARAGE</th>
         <th>STATUS</th>
+        <th>UPDATE</th>
     </tr>
     <tbody>
         @foreach (var note in Model)
@@ -30,6 +31,7 @@
             <td>@note.Project</td>
             <td>@note.Avarage</td>
             <td>@note.Status</td>
+            <td><a href="Notes/Update/@note.NoteID" class="btn btn-warning">UPDATE</a></td>
         </tr>
         }
 
