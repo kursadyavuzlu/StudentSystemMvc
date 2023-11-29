@@ -44,5 +44,13 @@ namespace StudentSystemMvc.Controllers
             var lssn = db.Tbl_Lessons.Find(id);
             return View("GetLesson", lssn);
         }
+
+        public ActionResult Update(Tbl_Lessons p)
+        {
+            var lssn = db.Tbl_Lessons.Find(p.LessonID);
+            lssn.LessonName = p.LessonName;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Default");
+        }
     }
 }

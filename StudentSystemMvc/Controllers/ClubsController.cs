@@ -44,5 +44,13 @@ namespace StudentSystemMvc.Controllers
             var club = db.Tbl_Clubs.Find(id);
             return View("GetClub", club);
         }
+
+        public ActionResult Update(Tbl_Clubs p)
+        {
+            var club = db.Tbl_Clubs.Find(p.ClubID);
+            club.ClubName = p.ClubName;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Clubs");
+        }
     }
 }
